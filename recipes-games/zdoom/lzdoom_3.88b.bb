@@ -17,8 +17,6 @@ SRC_URI = "\
     "
 SRC_URI[sha256sum] = "fc2b6657ff19fb4df58308966bb92f50cb1fe0d5876142dc17770c6f4a99a006"
 
-S = "${WORKDIR}/gzdoom-${PV}"
-
 inherit features_check
 
 REQUIRED_DISTRO_FEATURES = "opengl"
