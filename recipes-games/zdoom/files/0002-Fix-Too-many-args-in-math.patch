@@ -1,0 +1,34 @@
+From f6823df05bc7657a98df562717b1003a04c6bef5 Mon Sep 17 00:00:00 2001
+From: Ricky <richardhob@gmail.com>
+Date: Sat, 21 Mar 2026 20:54:14 +0000
+Subject: [PATCH] Fix: Too many args in math
+
+Throwing a compilation error when compiling a common math function. I think GCC
+is getting confused on the function prototypes. This is a quick fix - a better
+fix would be to rewrite the stuff here ... but I'm not sure if I wanna do that?
+
+Upstream-Status: Pending
+
+---
+ src/common/thirdparty/math/exp.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/common/thirdparty/math/exp.c b/src/common/thirdparty/math/exp.c
+index 29ec8d5da8..fdd286ae60 100644
+--- a/src/common/thirdparty/math/exp.c
++++ b/src/common/thirdparty/math/exp.c
+@@ -169,7 +169,10 @@ double x;
+ {
+ double px, xx;
+ int n;
+-double polevl(), floor(), ldexp();
++
++double polevl(double, double *, unsigned int); 
++double floor(double); 
++double ldexp(double, int);
+ 
+ if( x > MAXLOG)
+ 	{
+-- 
+2.34.1
+

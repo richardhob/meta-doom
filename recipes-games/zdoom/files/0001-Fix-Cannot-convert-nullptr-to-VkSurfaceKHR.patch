@@ -1,0 +1,27 @@
+From 02ff9066d22f7484108f814f86fce2c9addf0ba7 Mon Sep 17 00:00:00 2001
+From: Ricky <richardhob@gmail.com>
+Date: Sat, 21 Mar 2026 17:51:26 +0000
+Subject: [PATCH] Fix: Cannot convert nullptr to VkSurfaceKHR
+
+Upstream-Status: Pending
+
+---
+ src/common/platform/posix/sdl/sdlglvideo.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/common/platform/posix/sdl/sdlglvideo.cpp b/src/common/platform/posix/sdl/sdlglvideo.cpp
+index 86a31c0c37..7bfa0cfc0e 100644
+--- a/src/common/platform/posix/sdl/sdlglvideo.cpp
++++ b/src/common/platform/posix/sdl/sdlglvideo.cpp
+@@ -291,7 +291,7 @@ DFrameBuffer *SDLVideo::CreateFrameBuffer ()
+ 				builder.RequireExtension(names[i]);
+ 			auto instance = builder.Create();
+ 
+-			VkSurfaceKHR surfacehandle = nullptr;
++			VkSurfaceKHR surfacehandle = VK_NULL_HANDLE;
+ 			if (!I_CreateVulkanSurface(instance->Instance, &surfacehandle))
+ 				VulkanError("I_CreateVulkanSurface failed");
+ 
+-- 
+2.34.1
+

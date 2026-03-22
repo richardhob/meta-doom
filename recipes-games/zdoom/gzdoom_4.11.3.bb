@@ -12,7 +12,12 @@ DEPENDS = "\
     zmusic \
     "
 
-SRC_URI = "git://github.com/ZDoom/gzdoom.git;protocol=http;nobranch=1"
+SRC_URI = "\
+    git://github.com/ZDoom/gzdoom.git;protocol=http;nobranch=1 \
+    file://0001-Fix-Cannot-convert-nullptr-to-VkSurfaceKHR.patch \
+    file://0002-Fix-Too-many-args-in-math.patch \
+"
+
 SRCREV = "6ce809efe2902e43ceaa7031b875225d3a0367de"
 
 inherit features_check pkgconfig
@@ -26,4 +31,9 @@ PACKAGECONFIG ??= "${@bb.utils.filter("DISTRO_FEATURES", "vulkan", d)} \
 PACKAGECONFIG[vulkan] = "-DHAVE_VULKAN=ON,-DHAVE_VULKAN=OFF,vulkan-loader vulkan-headers"
 PACKAGECONFIG[gles2] = "-DHAVE_GLES2=ON,-DHAVE_GLES2=OFF"
 
+CFLAGS += "-Wno-old-style-definition"
+CXXFLAGS += "-Wno-template-id-cdtor"
+
 require zdoom.inc
+
+INSANE_SKIP += "buildpaths"
