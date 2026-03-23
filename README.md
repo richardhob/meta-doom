@@ -20,6 +20,28 @@ Then, in your image recipe add:
 
     IMAGE_INSTALL += "zdoom"
 
+Varient notes:
+
+- `gzdoom` only supports more "modern" hardware, 64 bit only
+- `lzdoom` supports "older" hardware
+
+## WADs
+
+WADs are installed to `/usr/share/games/doom` - the following WADs have recipes
+here:
+
+- `freedm`
+- `freedoom-1`
+- `freedoom-2`
+- `delaweave`
+- `harmony`
+- `chexquest3` (link broken)
+- `chexquest-galactic-conflict` (link broken)
+
+## Launching ZDoom
+
+TODO
+
 ## Autolaunching ZDoom
 
 The `zdoom-autolaunch` recipe can be used to make ZDoom start up automatically on boot.
